@@ -2,11 +2,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
     Restaurant restaurant;
+
+    //spoof variable acts as the menu selected by the user
+    List<Item> mockedItemList = new ArrayList<Item>();
 
     public void create_restaurant_data(){
         LocalTime openingTime = LocalTime.parse("10:30:00");
@@ -52,6 +57,23 @@ class RestaurantTest {
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>ORDER VALUE<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    @Test
+    public void order_value_should_get_cumulative_total_when_collection_of_items_selected(){
+        create_restaurant_data();
+        mockedItemList = restaurant.getMenu();
+        assertEquals(388,restaurant.getOrderValue(mockedItemList)); // Test case will fail, method not implemented
+    }
+
+    @Test
+    public void order_value_should_reduce_cumulative_total_when_an_item_removed(){
+        create_restaurant_data();
+        int total = restaurant.getOrderValue(mockedItemList); // mockedItemList is null, so NullPointerException will be thrown and test will fail
+        int afterTotal = mockedItemList.get(1).getPrice(); // Test case will fail, method not implemented
+        mockedItemList.remove(1); // mockedItemList is null, so NullPointerException will be thrown and test will fail
+        assertEquals(total-afterTotal,restaurant.getOrderValue(mockedItemList)); // Test case will fail, method not implemented
+    }
+    //<<<<<<<<<<<<<<<<<<<<<<<<<ORDER VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test
