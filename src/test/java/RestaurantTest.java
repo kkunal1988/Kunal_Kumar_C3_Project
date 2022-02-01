@@ -62,16 +62,17 @@ class RestaurantTest {
     public void order_value_should_get_cumulative_total_when_collection_of_items_selected(){
         create_restaurant_data();
         mockedItemList = restaurant.getMenu();
-        assertEquals(388,restaurant.getOrderValue(mockedItemList)); // Test case will fail, method not implemented
+        assertEquals(388,restaurant.getOrderValue(mockedItemList));
     }
 
     @Test
     public void order_value_should_reduce_cumulative_total_when_an_item_removed(){
         create_restaurant_data();
-        int total = restaurant.getOrderValue(mockedItemList); // mockedItemList is null, so NullPointerException will be thrown and test will fail
-        int afterTotal = mockedItemList.get(1).getPrice(); // Test case will fail, method not implemented
-        mockedItemList.remove(1); // mockedItemList is null, so NullPointerException will be thrown and test will fail
-        assertEquals(total-afterTotal,restaurant.getOrderValue(mockedItemList)); // Test case will fail, method not implemented
+        mockedItemList = restaurant.getMenu();
+        int total = restaurant.getOrderValue(mockedItemList);
+        int afterTotal = mockedItemList.get(1).getPrice();
+        mockedItemList.remove(1);
+        assertEquals(total-afterTotal,restaurant.getOrderValue(mockedItemList));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<<<ORDER VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
